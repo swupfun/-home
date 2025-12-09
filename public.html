@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swup - Digital Profile</title>
+  <meta name="description" content="Swup's digital profile" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="https://horizons-cdn.hostinger.com/d20e5249-8f47-4d46-bdf1-0a7d2ceb24e1/364fad0afd211d44b8d6afbd5d24a079.png" />
+  <style>
+    /* Animations matching Framer Motion */
+    @keyframes fadeInScale {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse-opacity {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Classes for animations */
+    .animate-enter {
+      animation: fadeInScale 0.8s ease-out forwards;
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+    
+    .animate-pulse-slow {
+      animation: pulse-opacity 3s ease-in-out infinite;
+    }
+
+    /* Custom Hover Effect: Green Text + Purple Glow */
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      color: #14F195;
+      filter: drop-shadow(0 0 8px rgba(153,69,255,0.8));
+    }
+    
+    /* Scrollbar hide */
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center p-4 overflow-hidden relative font-mono select-none">
+
+  <!-- Canvas Background -->
+  <canvas id="canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+  
+  <!-- Solid Background -->
+  <div class="absolute inset-0 bg-black"></div>
+
+  <!-- Ambient Glow -->
+  <div class="absolute inset-0 opacity-20 pointer-events-none">
+    <div class="absolute top-1/4 md:top-1/3 left-0 md:left-1/4 w-64 h-64 md:w-96 md:h-96 bg-[#14F195] rounded-full blur-[80px] md:blur-[100px] opacity-30"></div>
+    <div class="absolute bottom-1/4 md:bottom-1/3 right-0 md:right-1/4 w-64 h-64 md:w-96 md:h-96 bg-[#9945FF] rounded-full blur-[80px] md:blur-[100px] opacity-30"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-[#14F195] rounded-full blur-[80px] md:blur-[120px] opacity-10"></div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="relative z-20 flex flex-col items-center gap-6 md:gap-8 bg-black/80 backdrop-blur-md p-6 md:p-8 w-full max-w-[90%] md:max-w-md mx-auto rounded-none shadow-[0_0_60px_-10px_rgba(153,69,255,0.6),0_0_30px_-10px_rgba(20,241,149,0.5)] opacity-0 animate-enter">
+    
+    <!-- Profile Image -->
+    <img 
+      src="https://horizons-cdn.hostinger.com/d20e5249-8f47-4d46-bdf1-0a7d2ceb24e1/364fad0afd211d44b8d6afbd5d24a079.png" 
+      alt="Swup Logo" 
+      class="w-24 h-24 md:w-32 md:h-32 text-white filter invert opacity-0"
+      style="animation: fadeInScale 0.6s ease-out 0.3s forwards;"
+    />
+    
+    <!-- Social Links -->
+    <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10 pt-2">
+      <!-- Github -->
+      <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon text-white opacity-0" style="animation: fadeIn 0.5s ease-out 0.6s forwards;" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 md:w-6 md:h-6">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+          <path d="M9 18c-4.51 2-5-2-7-2"></path>
+        </svg>
+      </a>
+
+      <!-- X -->
+      <a href="https://x.com/Swup_fun" target="_blank" rel="noopener noreferrer" class="social-icon text-white opacity-0" style="animation: fadeIn 0.5s ease-out 0.7s forwards;" aria-label="X">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 md:w-6 md:h-6">
+          <path d="M18.901 1.153h3.68L14.462 10.3L23.518 22.847H1.933L10.773 13.59L1.472 1.153h9.458L15.938 7.674ZM17.107 20.354H19.53L8.384 3.612H5.706Z" />
+        </svg>
+      </a>
+
+      <!-- Telegram -->
+      <a href="https://t.me/dtswup" target="_blank" rel="noopener noreferrer" class="social-icon text-white opacity-0" style="animation: fadeIn 0.5s ease-out 0.8s forwards;" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 md:w-6 md:h-6">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+        </svg>
+      </a>
+
+      <!-- Discord -->
+      <a href="https://discordapp.com/users/swupitw_37765" target="_blank" rel="noopener noreferrer" class="social-icon text-white opacity-0" style="animation: fadeIn 0.5s ease-out 0.9s forwards;" aria-label="Discord">
+        <svg viewBox="0 0 127.14 96.36" fill="currentColor" class="w-5 h-5 md:w-6 md:h-6">
+          <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.11,77.11,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14c2.64-27.38-4.66-53.23-18.9-72.13ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer/Status -->
+  <div class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 text-center z-20 w-full">
+    <p class="text-neutral-500 text-[8px] md:text-[10px] font-mono tracking-[0.2em] md:tracking-[0.3em] uppercase px-4 animate-pulse-slow">
+      System Active // 2025
+    </p>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let particles = [];
+    let lastEmitTime = 0;
+
+    // Resize
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Particle Emitter
+    const emitParticles = (x, y) => {
+      const particleCount = 8;
+      const timeScale = Date.now() / 250;
+      
+      // Interpolate hues for Green/Purple effect
+      const t = (Math.sin(timeScale) + 1) / 2;
+      const baseHue = 155 + (265 - 155) * t;
+
+      for (let i = 0; i < particleCount; i++) {
+        const hueVariance = (Math.random() * 40) - 20;
+        const finalHue = baseHue + hueVariance;
+        
+        particles.push({
+          x: x + (Math.random() - 0.5) * 15,
+          y: y + (Math.random() - 0.5) * 15,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: -1 - Math.random() * 2,
+          life: 1,
+          maxLife: Math.random() * 20 + 10,
+          size: Math.random() * 6 + 2,
+          hue: finalHue
+        });
+      }
+      
+      // Limit count
+      if (particles.length > 800) {
+        particles = particles.slice(-800);
+      }
+    };
+
+    // Interaction Handlers
+    const handleInteraction = (x, y) => {
+      const now = Date.now();
+      if (now - lastEmitTime > 5) {
+        lastEmitTime = now;
+        emitParticles(x, y);
+      }
+    };
+
+    window.addEventListener('mousemove', (e) => handleInteraction(e.clientX, e.clientY));
+    window.addEventListener('touchmove', (e) => {
+      if(e.touches.length > 0) {
+        handleInteraction(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    // Animation Loop
+    const animate = () => {
+      // Fade out trail
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.globalCompositeOperation = 'lighter';
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        
+        // Update physics
+        p.x += p.vx;
+        p.y += p.vy;
+        p.x += Math.sin(p.life / 10) * 0.5;
+        p.life++;
+        p.size *= 0.94;
+
+        const lifeRatio = p.life / p.maxLife;
+        const alpha = 1 - lifeRatio;
+
+        if (alpha > 0 && p.size > 0.5) {
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = `hsla(${p.hue}, 100%, 50%, 1)`;
+          ctx.fillStyle = `hsla(${p.hue}, 100%, 60%, ${alpha})`;
+          
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        } else {
+          particles.splice(i, 1);
+        }
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+  </script>
+</body>
+</html>
